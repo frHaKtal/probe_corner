@@ -10,24 +10,28 @@ gcode:
       G0 Z10
       G0 X29 Y30
       PROBE
+      G0 X90 Y30
 
     {% elif side == 'bottom_right' %}
       RESPOND TYPE=command MSG="Probe coin bas droit"
       G0 Z10
       G0 X214 Y30
       PROBE
+      G0 X153 Y30
 
     {% elif side == 'top_right' %}
       RESPOND TYPE=command MSG="Probe coin haut à droite"
       G0 Z10
       G0 X214 Y220
       PROBE
+      G0 X153 Y220
 
     {% elif side == 'top_left' %}
       RESPOND TYPE=command MSG="Probe coin haut à gauche"
       G0 Z10
       G0 X29 Y220
       PROBE
+      G0 X90 Y220
 
     {% elif side == 'all' %}
       RESPOND TYPE=command MSG="Probe coin bas gauche"
