@@ -1,0 +1,53 @@
+[gcode_macro PROBE_CORNERS]
+description: Probe les coins spécifiés
+gcode:
+    RESPOND TYPE=command MSG="Début du probing des coins"
+    #G28
+    {% set side = params.SIDE|default('all') %}
+
+    {% if side == 'bottom_left' %}
+      RESPOND TYPE=command MSG="Probe coin bas gauche"
+      G0 Z10
+      G0 X29 Y30
+      PROBE
+
+    {% elif side == 'bottom_right' %}
+      RESPOND TYPE=command MSG="Probe coin bas droit"
+      G0 Z10
+      G0 X214 Y30
+      PROBE
+
+    {% elif side == 'top_right' %}
+      RESPOND TYPE=command MSG="Probe coin haut à droite"
+      G0 Z10
+      G0 X214 Y220
+      PROBE
+
+    {% elif side == 'top_left' %}
+      RESPOND TYPE=command MSG="Probe coin haut à gauche"
+      G0 Z10
+      G0 X29 Y220
+      PROBE
+
+    {% elif side == 'all' %}
+      RESPOND TYPE=command MSG="Probe coin bas gauche"
+      G0 Z10
+      G0 X29 Y30
+      PROBE
+      RESPOND TYPE=command MSG="Probe coin bas droit"
+      G0 Z10
+      G0 X214 Y30
+      PROBE
+      RESPOND TYPE=command MSG="Probe coin haut à droite"
+      G0 Z10
+      G0 X214 Y220
+      PROBE
+      RESPOND TYPE=command MSG="Probe coin haut à gauche"
+      G0 Z10
+      G0 X29 Y220
+      PROBE
+      RESPOND TYPE=command MSG="Probe terminé"
+
+    {% else %}
+      RESPOND TYPE=error MSG="Paramètre non valide. Utilisez 'bottom_left', 'bottom_right', 'top_right', 'top_left' ou 'all'."
+    {% endif %}
